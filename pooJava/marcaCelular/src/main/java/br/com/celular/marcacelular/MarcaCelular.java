@@ -12,6 +12,8 @@ public class MarcaCelular {
         Celular celularSamsung = new Celular();
         Scanner scan = new Scanner(System.in);
         
+        // Leitura de dados no Main e envio para os atributos da Class
+        
         System.out.print("Digite o nome do modelo do celular: ");
         celularSamsung.nome = scan.nextLine(); // Acessando atributo de Class e lendo pelo teclado
         System.out.print("Digite o SO do celular: ");

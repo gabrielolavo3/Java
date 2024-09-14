@@ -2,7 +2,7 @@ package Entidade;
 
 public class Celular {
     
-     // Declaração de atributos
+    // Declaração de atributos
     
     public String nome;
     public String sistemaOperacional;
