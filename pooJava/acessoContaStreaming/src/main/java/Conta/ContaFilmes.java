@@ -31,6 +31,6 @@ public class ContaFilmes {
     public void assitirFilme(String nomeFilme) {
         System.out.println("Iniciando o filme " + nomeFilme);
         System.out.println("Carregando o filme na resolução " + resolucaoTela);
-        carregarAudioFilme();
+        carregarAudioFilme(); // Chamade de método para deixar o resultado como public
     }       
 }
