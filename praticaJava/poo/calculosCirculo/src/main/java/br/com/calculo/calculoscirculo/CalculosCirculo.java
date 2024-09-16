@@ -1,3 +1,7 @@
+// Descrição: Criar uma classe chamada “Círculo” que possua um atributo para armazenar o raio e métodos para calcular a área e o perímetro do círculo.
+// Autor: Gabriel S. Olavo
+// IDE NetBeans
+
 package br.com.calculo.calculoscirculo;
 
 import java.util.Scanner;
