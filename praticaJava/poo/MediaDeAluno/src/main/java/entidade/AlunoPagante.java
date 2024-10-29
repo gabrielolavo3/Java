@@ -1,20 +1,16 @@
 package entidade;
 
-public class AlunoBolsista extends Aluno
+public class AlunoPagante extends Aluno
 {
-    private int bonusBolsista;
-    
-    public AlunoBolsista(String nome, String matricula, float primeiraNota, float segundaNota)
+    public AlunoPagante(String nome, String matricula, float primeiraNota, float segundaNota)
     {
         super(nome, matricula, primeiraNota, segundaNota);
-        bonusBolsista = 10;
     }
     
     @Override
     public float calcularMedia()
     {
         float media = (primeiraNota + segundaNota) / 2;
-              media = media + ((media * bonusBolsista) / 100);
         return media;
     }
     
