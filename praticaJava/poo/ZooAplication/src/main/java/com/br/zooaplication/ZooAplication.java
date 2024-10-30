@@ -25,9 +25,7 @@ public class ZooAplication
             System.out.print("Escolha uma opção: ");
             int opcao = sc.nextInt(); 
             sc.nextLine();
-            
-            
-            
+
             if (opcao < 1 || opcao > 4)
             {
                 System.out.println("\nOpçao inválida! Selecione uma das opções do menu");
