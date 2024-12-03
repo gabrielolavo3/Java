@@ -6,14 +6,19 @@ package DTO;
 
 public class GrupoDTO 
 {
-    private int id;
+    private int idGrupo;
     private String nomeGrupo;
     private String descricao;
-    private String dataCriacao;
+    private String dataCriacao;   
     
-    public int getId()
+    public int getIdGrupo()
     {
-        return id;
+        return idGrupo;
+    }
+    
+    public void setIdGrupo(int idGrupo)
+    {
+        this.idGrupo = idGrupo;
     }
     
     public String getNomeGrupo()
