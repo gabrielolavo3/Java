@@ -18,30 +18,20 @@ public class VeiculoDTO
     private String dataHoraSaida;
     private String porte;
 
-    /**
-     * @return the idVeiculo
-     */
+    /*
     public int getIdVeiculo() {
         return idVeiculo;
     }
 
-    /**
-     * @param idVeiculo the idVeiculo to set
-     */
     public void setIdVeiculo(int idVeiculo) {
         this.idVeiculo = idVeiculo;
     }
+    */
 
-    /**
-     * @return the cor
-     */
     public String getCor() {
         return cor;
     }
 
-    /**
-     * @param cor the cor to set
-     */
     public void setCor(String cor) {
         this.cor = cor;
     }

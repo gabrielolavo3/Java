@@ -12,6 +12,8 @@ public class RelatorioDTO
 {
     private int idRelatorio;
     private int FKpagamento;
+    private String FKveiculo;
+    private int FKvaga;
 
     /**
      * @return the idRelatorio
@@ -39,6 +41,34 @@ public class RelatorioDTO
      */
     public void setFKpagamento(int FKpagamento) {
         this.FKpagamento = FKpagamento;
+    }
+
+    /**
+     * @return the FKveiculo
+     */
+    public String getFKveiculo() {
+        return FKveiculo;
+    }
+
+    /**
+     * @param FKveiculo the FKveiculo to set
+     */
+    public void setFKveiculo(String FKveiculo) {
+        this.FKveiculo = FKveiculo;
+    }
+
+    /**
+     * @return the FKvaga
+     */
+    public int getFKvaga() {
+        return FKvaga;
+    }
+
+    /**
+     * @param FKvaga the FKvaga to set
+     */
+    public void setFKvaga(int FKvaga) {
+        this.FKvaga = FKvaga;
     }
     
     

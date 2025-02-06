@@ -4,8 +4,7 @@
  */
 package DAO;
 
-import DTO.TicketDTO;
-import DTO.VagaEstacionamentoDTO;
+import DTO.RelatorioDTO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,32 +14,32 @@ import java.util.ArrayList;
  *
  * @author Administrador
  */
-public class TicketDAO 
+public class RelatorioDAO 
 {
     Connection abrirConexao;
     PreparedStatement envioDadosSql;
-    ArrayList <TicketDTO> ticket = new ArrayList<>();
+    ArrayList <RelatorioDTO> relatorio = new ArrayList<>();
     ResultSet resultado;
     
-    public ArrayList<TicketDTO> GerarTicket()
+    public ArrayList<RelatorioDTO> GerarRelatorio()
     {
-        String sql = "SELECT * FROM Ticket WHERE Veiculo_idVeiculo = ?";
+        String sql = "SELECT * FROM Relatorio";
         abrirConexao = new Conexao().conectaBD();
         
         try 
         {
             envioDadosSql = abrirConexao.prepareStatement(sql);
-            
-            TicketDTO ticketDTO = new TicketDTO();
-            
-            envioDadosSql.setString(1, ticketDTO.getFKVeiculo());
             resultado = envioDadosSql.executeQuery();
             
             while(resultado.next())
             {                
-                ticketDTO.setIdTicket(resultado.getInt("idTicket"));
-                ticketDTO.setFKVeiculo(resultado.getString("fkVeiculo"));
-                ticket.add(ticketDTO);
+               RelatorioDTO relatorioDTO = new RelatorioDTO();
+               relatorioDTO.setIdRelatorio(resultado.getInt("id"));
+               relatorioDTO.setFKveiculo(resultado.getString("fkVeiculo"));
+               relatorioDTO.setFKvaga(resultado.getInt("fkVaga"));
+               relatorioDTO.setFKpagamento(resultado.getInt("fkPagamento"));
+               
+               relatorio.add(relatorioDTO);
             }
         } 
         catch (Exception e) 
@@ -48,6 +47,6 @@ public class TicketDAO
             
         }
         
-        return ticket;
+        return relatorio;
     }
 }

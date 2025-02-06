@@ -11,34 +11,22 @@ package DTO;
 public class TicketDTO 
 {
     private int idTicket;
-    private int idVeiculo;       
+    private String Fkveiculo;       
 
-    /**
-     * @return the idTicket
-     */
     public int getIdTicket() {
         return idTicket;
     }
 
-    /**
-     * @param idTicket the idTicket to set
-     */
     public void setIdTicket(int idTicket) {
         this.idTicket = idTicket;
     }
 
-    /**
-     * @return the idVeiculo
-     */
-    public int getIdVeiculo() {
-        return idVeiculo;
+    public String getFKVeiculo() {
+        return Fkveiculo;
     }
 
-    /**
-     * @param idVeiculo the idVeiculo to set
-     */
-    public void setIdVeiculo(int idVeiculo) {
-        this.idVeiculo = idVeiculo;
+    public void setFKVeiculo(String Fkveiculo) {
+        this.Fkveiculo = Fkveiculo;
     }
     
     

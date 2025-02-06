@@ -24,7 +24,7 @@ public class VeiculoDAO
     
     public void cadastrarVeiculo(VeiculoDTO veiculoDTO)
     {
-        String sql = "INSERT INTO Veiculo(Cor, Modelo, Placar, Porte) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Veiculo(Cor, Modelo, Placa, Porte) VALUES (?, ?, ?, ?)";
         abrirConexao = new Conexao().conectaBD();
         
         try 
@@ -68,7 +68,7 @@ public class VeiculoDAO
     
     public void alterarVeiculoCadastrado(VeiculoDTO veiculoDTO)
     {
-        String sql = "UPDATE Veiculo SET Cor = ?, Modelo = ?, Placar = ? WHERE idVeiculo = ?";
+        String sql = "UPDATE Veiculo SET Cor = ?, Modelo = ?, Placa = ? WHERE Placa = ?";
         abrirConexao = new Conexao().conectaBD();
         
         try 
@@ -77,6 +77,7 @@ public class VeiculoDAO
             envioDadosSql.setString(1, veiculoDTO.getCor());
             envioDadosSql.setString(2, veiculoDTO.getModelo());
             envioDadosSql.setString(3, veiculoDTO.getPlaca());
+            envioDadosSql.setString(4, veiculoDTO.getPlaca());
             envioDadosSql.executeUpdate();
             envioDadosSql.close();
             
@@ -90,13 +91,13 @@ public class VeiculoDAO
     
     public void excluirVeiculoCadastrado(VeiculoDTO veiculoDTO)
     {
-        String sql = "DELETE FROM Veiculo WHERE idVeiculo = ?";
+        String sql = "DELETE FROM Veiculo WHERE Placa = ?";
         abrirConexao = new Conexao().conectaBD();
         
         try 
         {
             envioDadosSql = abrirConexao.prepareStatement(sql);
-            envioDadosSql.setInt(1, veiculoDTO.getIdVeiculo());
+            envioDadosSql.setString(1, veiculoDTO.getPlaca());
             envioDadosSql.executeUpdate();
             envioDadosSql.close();
             

@@ -13,8 +13,8 @@ public class PagamentoDTO
     private int idPagamento;
     private float valor;
     private String tipoPagamento;
-    private String dataHora;
-    private int FKveiculo;
+    private int dataHora;
+    private String FKveiculo;
     private int FKvaga;
 
     /**
@@ -62,28 +62,28 @@ public class PagamentoDTO
     /**
      * @return the dataHora
      */
-    public String getDataHora() {
+    public int getDataHora() {
         return dataHora;
     }
 
     /**
      * @param dataHora the dataHora to set
      */
-    public void setDataHora(String dataHora) {
+    public void setDataHora(int dataHora) {
         this.dataHora = dataHora;
     }
 
     /**
      * @return the FKveiculo
      */
-    public int getFKveiculo() {
+    public String getFKveiculo() {
         return FKveiculo;
     }
 
     /**
      * @param FKveiculo the FKveiculo to set
      */
-    public void setFKveiculo(int FKveiculo) {
+    public void setFKveiculo(String FKveiculo) {
         this.FKveiculo = FKveiculo;
     }
 
