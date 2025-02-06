@@ -10,10 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema SE_Walpark
 -- -----------------------------------------------------
-
--- -----------------------------------------------------
--- Schema SE_Walpark
--- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `SE_Walpark` DEFAULT CHARACTER SET utf8 ;
 USE `SE_Walpark` ;
 
@@ -29,7 +25,6 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Usuario` (
   PRIMARY KEY (`idUsuario`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `SE_Walpark`.`Veiculo`
 -- -----------------------------------------------------
@@ -40,10 +35,9 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Veiculo` (
   `Placa` VARCHAR(45) NOT NULL,
   `Data_Hora_Entrada` INT NOT NULL,
   `Data_Hora_Saida` INT NOT NULL,
-  `Porte` VARCHAR(12) NOT NULL,
+  `Porte` INT NOT NULL,
   PRIMARY KEY (`Placa`))
 ENGINE = InnoDB;
-
 
 -- -----------------------------------------------------
 -- Table `SE_Walpark`.`Vaga`
@@ -54,7 +48,6 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Vaga` (
   PRIMARY KEY (`idVaga`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `SE_Walpark`.`Pagamento`
 -- -----------------------------------------------------
@@ -62,12 +55,12 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Pagamento` (
   `idPagamento` INT NOT NULL AUTO_INCREMENT,
   `Valor` FLOAT NOT NULL,
   `Tipo_Pagamento` VARCHAR(20) NOT NULL,
-  `Veiculo_idVeiculo`  VARCHAR(45) NOT NULL,
+  `Veiculo_idVeiculo` VARCHAR(45) NOT NULL,
   `Vaga_idVaga` INT NOT NULL,
   `Data_hora` INT NULL,
   PRIMARY KEY (`idPagamento`, `Veiculo_idVeiculo`, `Vaga_idVaga`),
-  INDEX `fk_Pagamento_Veiculo1_idx` (`Veiculo_idVeiculo` ASC) VISIBLE,
-  INDEX `fk_Pagamento_Vaga1_idx` (`Vaga_idVaga` ASC) VISIBLE,
+  INDEX `fk_Pagamento_Veiculo1_idx` (`Veiculo_idVeiculo`),
+  INDEX `fk_Pagamento_Vaga1_idx` (`Vaga_idVaga`),
   CONSTRAINT `fk_Pagamento_Veiculo1`
     FOREIGN KEY (`Veiculo_idVeiculo`)
     REFERENCES `SE_Walpark`.`Veiculo` (`Placa`)
@@ -80,15 +73,14 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Pagamento` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `SE_Walpark`.`Ticket`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Ticket` (
   `idTicket` INT NOT NULL AUTO_INCREMENT,
-  `Veiculo_idVeiculo`  VARCHAR(45) NOT NULL,
+  `Veiculo_idVeiculo` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idTicket`, `Veiculo_idVeiculo`),
-  INDEX `fk_Ticket_Veiculo1_idx` (`Veiculo_idVeiculo` ASC) VISIBLE,
+  INDEX `fk_Ticket_Veiculo1_idx` (`Veiculo_idVeiculo`),
   CONSTRAINT `fk_Ticket_Veiculo1`
     FOREIGN KEY (`Veiculo_idVeiculo`)
     REFERENCES `SE_Walpark`.`Veiculo` (`Placa`)
@@ -96,24 +88,22 @@ CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Ticket` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
 -- Table `SE_Walpark`.`Relatorio`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `SE_Walpark`.`Relatorio` (
   `idRelatorio` INT NOT NULL AUTO_INCREMENT,
   `Pagamento_idPagamento` INT NOT NULL,
-  `Pagamento_Veiculo_idVeiculo`  VARCHAR(45) NOT NULL,
+  `Pagamento_Veiculo_idVeiculo` VARCHAR(45) NOT NULL,
   `Pagamento_Vaga_idVaga` INT NOT NULL,
   PRIMARY KEY (`idRelatorio`, `Pagamento_idPagamento`, `Pagamento_Veiculo_idVeiculo`, `Pagamento_Vaga_idVaga`),
-  INDEX `fk_Relatorio_Pagamento1_idx` (`Pagamento_idPagamento` ASC, `Pagamento_Veiculo_idVeiculo` ASC, `Pagamento_Vaga_idVaga` ASC) VISIBLE,
+  INDEX `fk_Relatorio_Pagamento1_idx` (`Pagamento_idPagamento`, `Pagamento_Veiculo_idVeiculo`, `Pagamento_Vaga_idVaga`),
   CONSTRAINT `fk_Relatorio_Pagamento1`
-    FOREIGN KEY (`Pagamento_idPagamento` , `Pagamento_Veiculo_idVeiculo` , `Pagamento_Vaga_idVaga`)
-    REFERENCES `SE_Walpark`.`Pagamento` (`idPagamento` , `Veiculo_idVeiculo` , `Vaga_idVaga`)
+    FOREIGN KEY (`Pagamento_idPagamento`, `Pagamento_Veiculo_idVeiculo`, `Pagamento_Vaga_idVaga`)
+    REFERENCES `SE_Walpark`.`Pagamento` (`idPagamento`, `Veiculo_idVeiculo`, `Vaga_idVaga`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
